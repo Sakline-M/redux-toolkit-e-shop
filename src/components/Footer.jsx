@@ -22,6 +22,8 @@ const Footer = () => {
         </div>
 
         {/* Social Icons */}
+        <div className='flex flex-col'>
+          <div className='py-3 font-semibold text-xl'>Follow Us</div>
         <div className="flex space-x-4">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
             <FaFacebook className="text-2xl" />
@@ -32,6 +34,7 @@ const Footer = () => {
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
             <FaInstagram className="text-2xl" />
           </a>
+        </div>
         </div>
       </div>
 

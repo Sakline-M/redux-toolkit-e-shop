@@ -7,6 +7,7 @@ import CategorySection from "../../components/CategorySection";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../product/ProductSlice";
 import Product from "../../product/Product";
+import Shop from "../shop/Shop";
 
 
 const HomePage = () => {
@@ -53,6 +54,7 @@ const HomePage = () => {
       <InfoSection />
       <CategorySection />
       <Product/>
+      <Shop/>
     </div>
   );
 };
