@@ -5,13 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "./ProductSlice";
 import { productData } from "../assets/mockData";
 import { FaStar } from "react-icons/fa";
+import { addToCart } from "../pages/cart/CartSlice";
 
 const Product = () => {
   const products = useSelector((state) => state.product);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setProducts(productData));
-  }, []);
+  }, [dispatch]);
+
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch(addToCart(product));
+    alert("Product Added Succesfully!");
+  };
 
   return (
     <div className="container mx-auto py-12">
@@ -32,7 +40,10 @@ const Product = () => {
               <FaStar className="text-yellow-500" />
               <FaStar className="text-yellow-500" />
             </div>
-            <div className="absolute bottom-4 right-2 flex items-center justify-center w-8 h-8 bg-red-600 group text-white text-sm rounded-full hover:w-32 hover:bg-red-700 transition-all">
+            <div
+              className="absolute bottom-4 right-2 flex items-center justify-center w-8 h-8 bg-red-600 group text-white text-sm rounded-full hover:w-32 hover:bg-red-700 transition-all duration-100"
+              onClick={(e) => handleAddToCart(e, product)}
+            >
               <span className="group-hover:hidden">+</span>
               <span className="hidden group-hover:block">Add to cart</span>
             </div>
