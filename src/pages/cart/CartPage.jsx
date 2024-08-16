@@ -6,13 +6,19 @@ import emptyCart from "../../assets/images/emptycart.jpg";
 import { FaTrashAlt } from "react-icons/fa";
 import Modal from "../../components/Modal";
 import ChangeAddress from "../../components/ChangeAddress";
-import { removeFromCart } from "./CartSlice";
+import {
+  decrementQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "./CartSlice";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
   const [address, setAddress] = useState("21 street, UK");
   const [isModalOpen, setisModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="container mx-auto py-8 min-h-96 px-4 md:px:16 lg:px-24">
@@ -49,11 +55,19 @@ const CartPage = () => {
                   <div className="flex space-x-12 items-center">
                     <p>${product.price}</p>
                     <div className="flex items-center justify-center border">
-                      <button className="text-xl font-bold px-1.5 border-r">
+                      <button
+                        className="text-xl font-bold px-1.5 border-r"
+                        onClick={() => dispatch(decrementQuantity(product.id))}
+                      >
                         -
                       </button>
                       <p className="text-xl px-2">{product.quantity}</p>
-                      <button className="text-xl px-1 border-1">+</button>
+                      <button
+                        className="text-xl px-1 border-1"
+                        onClick={() => dispatch(increaseQuantity(product.id))}
+                      >
+                        +
+                      </button>
                     </div>
                     <p>${(product.price * product.quantity).toFixed(2)}</p>
                     <button
@@ -92,7 +106,10 @@ const CartPage = () => {
                   ${cart.totalPrice.toFixed(2)}
                 </span>
               </div>
-              <button className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600">
+              <button
+                className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600"
+                onClick={() => navigate("/checkout")}
+              >
                 Proceed to Checkout
               </button>
             </div>

@@ -1,22 +1,19 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { FaStar } from "react-icons/fa";
-import { productData } from "../../assets/mockData";
-import { setProducts } from "../../product/ProductSlice";
+import { useSelector } from "react-redux";
 
-const Shop = () => {
-  const products = useSelector((state) => state.product);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setProducts(productData));
-  }, []);
+const FilterData = () => {
+  const filterProducts = useSelector((state) => state.product.filteredData);
   return (
     <div className="container mx-auto py-12">
       <h2 className="text-2xl font-bold mb-6 text-center">Shop</h2>
       <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 cursor-pointer">
-        {products.products.map((product) => (
-          <div key={product.id} className="bg-white p-4 shadow rounded relative border transform transition-transform duration-300 hover:scale-105">
+        {filterProducts.map((product) => (
+          <div
+            className="bg-white p-4 shadow rounded relative border transform transition-transform duration-300 hover:scale-105"
+          >
             <img
               src={product.img}
               alt=""
@@ -41,4 +38,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default FilterData;

@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-key */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "./ProductSlice";
@@ -26,7 +25,7 @@ const Product = () => {
       <h2 className="text-2xl font-bold mb-6 text-center">Top Products</h2>
       <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 cursor-pointer">
         {products.products.slice(0, 5).map((product) => (
-          <div className="bg-white p-4 shadow rounded relative border transform transition-transform duration-300 hover:scale-105">
+          <div key={product.id} className="bg-white p-4 shadow rounded relative border transform transition-transform duration-300 hover:scale-105">
             <img
               src={product.img}
               alt=""
